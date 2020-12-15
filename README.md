@@ -23,6 +23,25 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+## Problems to Solve
+
+We want to automate the following processes:
+- Keeper eligiblity
+
+The following would be nice to have:
+- Uphold the salary cap per team throughout the season
+  - potentially send out an email when a team passes the threshold?
+- End of year export
+  - could auto-generate a list of keepers and their costs + remaining years
+- Allow modification of rules through admin backend to reflect year to year changes
+  - for example, if we were to change $5 cost, or increase years players could be kept, etc. 
+  
+## Solution
+
+1. Leverage Yahoo Fantasy Sports API to automate list of transactions in our league
+2. Set up daily(?) sync
+3. Apply rules to list of transactions to track which keepers are eligible
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
