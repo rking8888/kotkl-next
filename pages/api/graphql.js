@@ -34,7 +34,9 @@ const resolvers = {
 
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers
+  resolvers,
+  introspection: true,
+  playground: true
 });
 
 let db;
