@@ -2,11 +2,17 @@
 const YahooFantasy = require('yahoo-fantasy');
 require('dotenv').config();
 
+const redirectUrl =
+  (process.env.VERCEL_URL.includes('https') ? '' : 'https://') +
+  process.env.VERCEL_URL +
+  'api/auth/callback/';
+console.log(redirectUrl);
+
 export const yf = new YahooFantasy(
   process.env.YAHOO_APP_KEY, // Yahoo! Application Key
   process.env.YAHOO_APP_SECRET, // Yahoo! Application Secret
   null, //tokenCallbackFunction, // callback function when user token is refreshed (optional)
-  process.env.VERCEL_URL + 'api/auth/callback/' //redirectUri // redirect endpoint when user authenticates (optional)
+  redirectUrl //redirectUri // redirect endpoint when user authenticates (optional)
 );
 
 // const tokenCallback = function ({ access_token, refresh_token }) {
