@@ -5,7 +5,7 @@ require('dotenv').config();
 const redirectUrl =
   (process.env.VERCEL_URL.includes('https') ? '' : 'https://') +
   process.env.VERCEL_URL +
-  'api/auth/callback/';
+  '/api/auth/callback/';
 console.log(redirectUrl);
 
 export const yf = new YahooFantasy(
