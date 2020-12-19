@@ -6,7 +6,7 @@ export const yf = new YahooFantasy(
   process.env.YAHOO_APP_KEY, // Yahoo! Application Key
   process.env.YAHOO_APP_SECRET, // Yahoo! Application Secret
   null, //tokenCallbackFunction, // callback function when user token is refreshed (optional)
-  process.env.VERCEL_URL + '/api/auth/callback/' //redirectUri // redirect endpoint when user authenticates (optional)
+  process.env.VERCEL_URL + 'api/auth/callback/' //redirectUri // redirect endpoint when user authenticates (optional)
 );
 
 // const tokenCallback = function ({ access_token, refresh_token }) {
