@@ -2,13 +2,46 @@
 const YahooFantasy = require('yahoo-fantasy');
 require('dotenv').config();
 
-// you can get an application key/secret by creating a new application on Yahoo!
 export const yf = new YahooFantasy(
   process.env.YAHOO_APP_KEY, // Yahoo! Application Key
-  process.env.YAHOO_APP_SECRET // Yahoo! Application Secret
-  //tokenCallbackFunction, // callback function when user token is refreshed (optional)
-  //redirectUri // redirect endpoint when user authenticates (optional)
+  process.env.YAHOO_APP_SECRET, // Yahoo! Application Secret
+  null, //tokenCallbackFunction, // callback function when user token is refreshed (optional)
+  process.env.VERCEL_URL + '/api/auth/callback/' //redirectUri // redirect endpoint when user authenticates (optional)
 );
+
+// const tokenCallback = function ({ access_token, refresh_token }) {
+//     return new Promise((resolve, reject) => {
+//       yf.setUserToken(access_token);
+//       yf.setRefreshToken(refresh_token);
+//       console.log("PERSIST ACCESS TOKEN", access_token);
+//       console.log("PERSIST REFRESH TOKEN", refresh_token);
+
+//   const options = {
+//     url: "https://api.login.yahoo.com/openid/v1/userinfo",
+//     method: "get",
+//     json: true,
+//     auth: {
+//       bearer: access_token,
+//     },
+//   };
+
+//   request(options, function (error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//       const userObj = {
+//         id: body.sub,
+//         name: body.nickname,
+//         avatar: body.profile_images.image64,
+//         accessToken: access_token,
+//         refreshToken: refresh_token,
+//       };
+
+//       app.user = userObj;
+
+//       return resolve();
+//     }
+//   });
+//     });
+//   };
 
 // you can authenticate a user by setting a route to call the auth function
 // note: from v4.0 on, public queries are now supported; that is, you can query
@@ -29,7 +62,7 @@ export const yf = new YahooFantasy(
 // if you're not authenticating via the library you'll need to set the Yahoo!
 // token for the user
 // yf.setUserToken(
-//   Y!CLIENT_TOKEN
+//   'pxpj7aw22n42fwjfsnhenhv37zrmvcfp'
 // );
 
 // you can do the same for the refresh token...
