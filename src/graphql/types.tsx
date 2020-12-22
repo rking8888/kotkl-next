@@ -36,6 +36,7 @@ export type Manager = {
   manager_id: Scalars['String'];
   nickname: Scalars['String'];
   email: Scalars['String'];
+  is_comanager?: Maybe<Scalars['String']>;
 };
 
 export type TeamLogos = {
@@ -215,6 +216,11 @@ export type ManagerResolvers<
   manager_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   nickname?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  is_comanager?: Resolver<
+    Maybe<ResolversTypes['String']>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -283,7 +289,9 @@ export type IndexQueryVariables = Exact<{ [key: string]: never }>;
 export type IndexQuery = {
   allTeams: Array<
     Pick<TeamMvc, 'team_id' | 'name'> & {
-      managers: Array<Maybe<Pick<Manager, 'nickname' | 'manager_id'>>>;
+      managers: Array<
+        Maybe<Pick<Manager, 'nickname' | 'manager_id' | 'is_comanager'>>
+      >;
       team_logos: Array<Maybe<Pick<TeamLogos, 'url'>>>;
     }
   >;
@@ -346,6 +354,7 @@ export const IndexDocument = gql`
       managers {
         nickname
         manager_id
+        is_comanager
       }
       team_logos {
         url

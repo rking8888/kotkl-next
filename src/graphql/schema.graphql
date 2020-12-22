@@ -7,6 +7,7 @@ type Manager @entity {
   manager_id: String! @column
   nickname: String! @column
   email: String! @column
+  is_comanager: String @column
 }
 
 type TeamLogos @entity {

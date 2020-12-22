@@ -28,6 +28,7 @@ export type Manager = {
   manager_id: Scalars['String'];
   nickname: Scalars['String'];
   email: Scalars['String'];
+  is_comanager?: Maybe<Scalars['String']>;
 };
 
 export type TeamLogos = {
@@ -57,6 +58,7 @@ export type ManagerDbObject = {
   manager_id: string;
   nickname: string;
   email: string;
+  is_comanager?: Maybe<string>;
 };
 
 export type TeamLogosDbObject = {

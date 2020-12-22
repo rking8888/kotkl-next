@@ -1,5 +1,4 @@
 import { MongoClient, Db } from 'mongodb';
-require('dotenv').config();
 export * from './types';
 
 export let client: MongoClient;
@@ -14,9 +13,9 @@ export const connect = async (): Promise<Db> => {
       });
       database = client.db('kotkl');
     } catch (error) {
-      console.log('Unable to connect to DB', error);
+      console.info('Unable to connect to DB', error);
     }
   }
-  console.log('Connected');
+  console.info(`Success! Connected to database ${process.env.MONGO_DB_URI}`);
   return database;
 };

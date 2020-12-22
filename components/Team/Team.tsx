@@ -21,6 +21,7 @@ gql`
       managers {
         nickname
         manager_id
+        is_comanager
       }
       team_logos {
         url
@@ -28,27 +29,29 @@ gql`
     }
   }
 `;
-
 const Teams = () => {
   const { data, loading } = useIndexQuery();
-  console.log(data);
   const teamList = data?.allTeams.map((team, i) =>
-    team.team_logos.map((logo, l) =>
-      team.managers.map((manager, m) => (
-        <li key={manager?.nickname}>
-          <div>Team Name: {team.name}</div>
-          <div>Manager: {manager?.nickname}</div>
-          <div>Logo:</div>
-          <img src={logo?.url} alt='team logo' />
-        </li>
-      ))
-    )
+    team.team_logos.map((logo, l) => (
+      <li key={i}>
+        <div>Team Name: {team.name}</div>
+        {team.managers.map((manager, m) =>
+          manager?.is_comanager == null ? (
+            <div key={m}>Manager: {manager?.nickname} </div>
+          ) : (
+            <div key={m}>Co-manager: {manager?.nickname}</div>
+          )
+        )}
+        <div>Logo:</div>
+        <img src={logo?.url} alt='team logo' />
+      </li>
+    ))
   );
   let content = <div>Loading ...</div>;
   if (!loading && data) {
     content = (
       <>
-        <h2>Teams test:</h2>
+        <h2>KOTKL TEAMS:</h2>
         <ul>{teamList}</ul>
       </>
     );

@@ -33,7 +33,6 @@ const resolvers: Resolvers = {
       const dbObject = await collection.findOne({
         _id: ObjectID.createFromHexString(team_id)
       });
-      console.log(dbObject);
       return fromDbObject(dbObject!);
     }
   }
