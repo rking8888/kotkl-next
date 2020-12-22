@@ -29,26 +29,30 @@ export type Query = {
 };
 
 export type QueryTeamArgs = {
-  teamId: Scalars['ID'];
+  team_id: Scalars['String'];
 };
 
 export type Manager = {
-  managerId: Scalars['ID'];
+  manager_id: Scalars['String'];
   nickname: Scalars['String'];
   email: Scalars['String'];
 };
 
+export type TeamLogos = {
+  url: Scalars['String'];
+};
+
 export type TeamMvc = {
-  teamId: Scalars['ID'];
+  team_id: Scalars['String'];
   name: Scalars['String'];
-  teamLogo?: Maybe<Scalars['String']>;
-  auctionBudgetTotal: Scalars['Int'];
-  auctionBudgetSpent: Scalars['Int'];
-  manager: Array<Maybe<Manager>>;
-  wavierPriority: Scalars['Int'];
-  faabBalance: Scalars['Int'];
-  numberOfMoves: Scalars['Int'];
-  numberOfTrades: Scalars['Int'];
+  auction_budget_total: Scalars['String'];
+  auction_budget_spent: Scalars['Int'];
+  wavier_priority: Scalars['Int'];
+  faab_balance: Scalars['String'];
+  number_of_moves: Scalars['String'];
+  number_of_trades: Scalars['Int'];
+  managers: Array<Maybe<Manager>>;
+  team_logos: Array<Maybe<TeamLogos>>;
 };
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -168,9 +172,9 @@ export type DirectiveResolverFn<
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
-  ID: ResolverTypeWrapper<Scalars['ID']>;
-  Manager: ResolverTypeWrapper<Manager>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Manager: ResolverTypeWrapper<Manager>;
+  TeamLogos: ResolverTypeWrapper<TeamLogos>;
   TeamMVC: ResolverTypeWrapper<TeamMvc>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
@@ -179,9 +183,9 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {};
-  ID: Scalars['ID'];
-  Manager: Manager;
   String: Scalars['String'];
+  Manager: Manager;
+  TeamLogos: TeamLogos;
   TeamMVC: TeamMvc;
   Int: Scalars['Int'];
   Boolean: Scalars['Boolean'];
@@ -200,7 +204,7 @@ export type QueryResolvers<
     Maybe<ResolversTypes['TeamMVC']>,
     ParentType,
     ContextType,
-    RequireFields<QueryTeamArgs, 'teamId'>
+    RequireFields<QueryTeamArgs, 'team_id'>
   >;
 };
 
@@ -208,9 +212,17 @@ export type ManagerResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Manager'] = ResolversParentTypes['Manager']
 > = {
-  managerId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  manager_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   nickname?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TeamLogosResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['TeamLogos'] = ResolversParentTypes['TeamLogos']
+> = {
+  url?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -218,26 +230,39 @@ export type TeamMvcResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['TeamMVC'] = ResolversParentTypes['TeamMVC']
 > = {
-  teamId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  team_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  teamLogo?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  auctionBudgetTotal?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  auctionBudgetSpent?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  manager?: Resolver<
+  auction_budget_total?: Resolver<
+    ResolversTypes['String'],
+    ParentType,
+    ContextType
+  >;
+  auction_budget_spent?: Resolver<
+    ResolversTypes['Int'],
+    ParentType,
+    ContextType
+  >;
+  wavier_priority?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  faab_balance?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  number_of_moves?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  number_of_trades?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  managers?: Resolver<
     Array<Maybe<ResolversTypes['Manager']>>,
     ParentType,
     ContextType
   >;
-  wavierPriority?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  faabBalance?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  numberOfMoves?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  numberOfTrades?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  team_logos?: Resolver<
+    Array<Maybe<ResolversTypes['TeamLogos']>>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   Manager?: ManagerResolvers<ContextType>;
+  TeamLogos?: TeamLogosResolvers<ContextType>;
   TeamMVC?: TeamMvcResolvers<ContextType>;
 };
 
@@ -248,26 +273,26 @@ export type Resolvers<ContextType = any> = {
 export type IResolvers<ContextType = any> = Resolvers<ContextType>;
 
 export type TeamQueryVariables = Exact<{
-  teamId: Scalars['ID'];
+  team_id: Scalars['String'];
 }>;
 
-export type TeamQuery = {
-  Team?: Maybe<
-    Pick<TeamMvc, 'name'> & { manager: Array<Maybe<Pick<Manager, 'nickname'>>> }
-  >;
-};
+export type TeamQuery = { Team?: Maybe<Pick<TeamMvc, 'name'>> };
 
 export type IndexQueryVariables = Exact<{ [key: string]: never }>;
 
-export type IndexQuery = { allTeams: Array<Pick<TeamMvc, 'name'>> };
+export type IndexQuery = {
+  allTeams: Array<
+    Pick<TeamMvc, 'team_id' | 'name'> & {
+      managers: Array<Maybe<Pick<Manager, 'nickname'>>>;
+      team_logos: Array<Maybe<Pick<TeamLogos, 'url'>>>;
+    }
+  >;
+};
 
 export const TeamDocument = gql`
-  query Team($teamId: ID!) {
-    Team(teamId: $teamId) {
+  query Team($team_id: String!) {
+    Team(team_id: $team_id) {
       name
-      manager {
-        nickname
-      }
     }
   }
 `;
@@ -284,7 +309,7 @@ export const TeamDocument = gql`
  * @example
  * const { data, loading, error } = useTeamQuery({
  *   variables: {
- *      teamId: // value for 'teamId'
+ *      team_id: // value for 'team_id'
  *   },
  * });
  */
@@ -316,7 +341,14 @@ export type TeamQueryResult = ApolloReactCommon.QueryResult<
 export const IndexDocument = gql`
   query Index {
     allTeams {
+      team_id
       name
+      managers {
+        nickname
+      }
+      team_logos {
+        url
+      }
     }
   }
 `;

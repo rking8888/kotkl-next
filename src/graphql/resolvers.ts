@@ -11,28 +11,27 @@ const getCollection = async () => {
 };
 
 const fromDbObject = (dbObject: TeamMvcDbObject): TeamMvc => ({
-  teamId: dbObject._id.toHexString(),
+  team_id: dbObject.team_id,
   name: dbObject.name,
-  teamLogo: dbObject.teamLogo,
-  auctionBudgetTotal: dbObject.auctionBudgetSpent,
-  auctionBudgetSpent: dbObject.auctionBudgetTotal,
-  manager: dbObject.manager,
-  wavierPriority: dbObject.wavierPriority,
-  faabBalance: dbObject.faabBalance,
-  numberOfMoves: dbObject.numberOfMoves,
-  numberOfTrades: dbObject.numberOfTrades
+  auction_budget_total: dbObject.auction_budget_total,
+  auction_budget_spent: dbObject.auction_budget_spent,
+  wavier_priority: dbObject.wavier_priority,
+  faab_balance: dbObject.faab_balance,
+  number_of_moves: dbObject.number_of_moves,
+  number_of_trades: dbObject.number_of_trades,
+  managers: dbObject.managers,
+  team_logos: dbObject.team_logos
 });
 const resolvers: Resolvers = {
   Query: {
     allTeams: async () => {
       const collection = await getCollection();
-      console.log(collection.find());
       return await collection.find().map(fromDbObject).toArray();
     },
-    Team: async (_: any, { teamId }) => {
+    Team: async (_: any, { team_id }) => {
       const collection = await getCollection();
       const dbObject = await collection.findOne({
-        _id: ObjectID.createFromHexString(teamId)
+        _id: ObjectID.createFromHexString(team_id)
       });
       console.log(dbObject);
       return fromDbObject(dbObject!);

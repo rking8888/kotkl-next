@@ -16,7 +16,7 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href='https://nextjs.org'>Next.js!</a>
         </h1>
-        <Team teamId={1} />
+        <Team />
 
         <h1 className={className(styles.description, 'p-5')}>
           Here is a sample Player Card

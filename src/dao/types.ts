@@ -21,26 +21,30 @@ export type Query = {
 };
 
 export type QueryTeamArgs = {
-  teamId: Scalars['ID'];
+  team_id: Scalars['String'];
 };
 
 export type Manager = {
-  managerId: Scalars['ID'];
+  manager_id: Scalars['String'];
   nickname: Scalars['String'];
   email: Scalars['String'];
 };
 
+export type TeamLogos = {
+  url: Scalars['String'];
+};
+
 export type TeamMvc = {
-  teamId: Scalars['ID'];
+  team_id: Scalars['String'];
   name: Scalars['String'];
-  teamLogo?: Maybe<Scalars['String']>;
-  auctionBudgetTotal: Scalars['Int'];
-  auctionBudgetSpent: Scalars['Int'];
-  manager: Array<Maybe<Manager>>;
-  wavierPriority: Scalars['Int'];
-  faabBalance: Scalars['Int'];
-  numberOfMoves: Scalars['Int'];
-  numberOfTrades: Scalars['Int'];
+  auction_budget_total: Scalars['String'];
+  auction_budget_spent: Scalars['Int'];
+  wavier_priority: Scalars['Int'];
+  faab_balance: Scalars['String'];
+  number_of_moves: Scalars['String'];
+  number_of_trades: Scalars['Int'];
+  managers: Array<Maybe<Manager>>;
+  team_logos: Array<Maybe<TeamLogos>>;
 };
 
 export type AdditionalEntityFields = {
@@ -50,20 +54,24 @@ export type AdditionalEntityFields = {
 
 import { ObjectID } from 'mongodb';
 export type ManagerDbObject = {
-  managerId: string;
+  manager_id: string;
   nickname: string;
   email: string;
 };
 
+export type TeamLogosDbObject = {
+  url: string;
+};
+
 export type TeamMvcDbObject = {
-  _id: ObjectID;
+  team_id: string;
   name: string;
-  teamLogo?: Maybe<string>;
-  auctionBudgetTotal: number;
-  auctionBudgetSpent: number;
-  manager: Array<Maybe<Manager>>;
-  wavierPriority: number;
-  faabBalance: number;
-  numberOfMoves: number;
-  numberOfTrades: number;
+  auction_budget_total: string;
+  auction_budget_spent: number;
+  wavier_priority: number;
+  faab_balance: string;
+  number_of_moves: string;
+  number_of_trades: number;
+  managers: Array<Maybe<Manager>>;
+  team_logos: Array<Maybe<TeamLogos>>;
 };
