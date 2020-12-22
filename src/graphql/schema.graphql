@@ -1,0 +1,23 @@
+type Query {
+  allTeams: [TeamMVC!]!
+  Team(teamId: ID!): TeamMVC
+}
+
+type Manager @entity {
+  managerId: ID! @column
+  nickname: String! @column
+  email: String! @column
+}
+
+type TeamMVC @entity {
+  teamId: ID! @id
+  name: String! @column
+  teamLogo: String @column
+  auctionBudgetTotal: Int! @column
+  auctionBudgetSpent: Int! @column
+  manager: [Manager]! @column
+  wavierPriority: Int! @column
+  faabBalance: Int! @column
+  numberOfMoves: Int! @column
+  numberOfTrades: Int! @column
+}
