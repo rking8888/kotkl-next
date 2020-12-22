@@ -9,7 +9,9 @@ export const connect = async (): Promise<Db> => {
   if (!database) {
     try {
       console.info(`Connecting to database ${process.env.MONGO_DB_URI}`);
-      client = await MongoClient.connect(process.env.MONGO_DB_URI!);
+      client = await MongoClient.connect(process.env.MONGO_DB_URI!, {
+        useUnifiedTopology: true
+      });
       database = client.db('kotkl');
     } catch (error) {
       console.log('Unable to connect to DB', error);

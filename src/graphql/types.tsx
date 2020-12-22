@@ -283,7 +283,7 @@ export type IndexQueryVariables = Exact<{ [key: string]: never }>;
 export type IndexQuery = {
   allTeams: Array<
     Pick<TeamMvc, 'team_id' | 'name'> & {
-      managers: Array<Maybe<Pick<Manager, 'nickname'>>>;
+      managers: Array<Maybe<Pick<Manager, 'nickname' | 'manager_id'>>>;
       team_logos: Array<Maybe<Pick<TeamLogos, 'url'>>>;
     }
   >;
@@ -345,6 +345,7 @@ export const IndexDocument = gql`
       name
       managers {
         nickname
+        manager_id
       }
       team_logos {
         url

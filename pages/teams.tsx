@@ -1,28 +1,23 @@
-import { TodoMvc } from '../src/graphql/types';
+import { TeamMvc } from '../src/graphql/types';
 import { useState } from 'react';
 
 const Index = () => {
-  const [todos] = useState([
+  const [teams] = useState([
     {
-      todoId: '1',
-      completed: false,
-      description: 'foo'
+      team_id: '1'
     }
-  ] as TodoMvc[]);
-  const todoElements = todos.map((t) => (
-    <tr key={t.todoId}>
-      <td>
-        <input type='checkbox' checked={t.completed}></input>
-      </td>
-      <td>{t.description}</td>
+  ] as TeamMvc[]);
+  const todoElements = teams.map((t) => (
+    <tr key={t.team_id}>
+      <td>Name:{t.name}</td>
     </tr>
   ));
-  return todos.length > 0 ? (
+  return teams.length > 0 ? (
     <table>
       <tbody>{todoElements}</tbody>
     </table>
   ) : (
-    <div>No ToDos!</div>
+    <div>No Teams</div>
   );
 };
 
