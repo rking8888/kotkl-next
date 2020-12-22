@@ -35,6 +35,7 @@ const Teams = () => {
     team.team_logos.map((logo, l) => (
       <li key={i}>
         <div>Team Name: {team.name}</div>
+        <img src={logo?.url} alt='team logo' />
         {team.managers.map((manager, m) =>
           manager?.is_comanager == null ? (
             <div key={m}>Manager: {manager?.nickname} </div>
@@ -42,8 +43,6 @@ const Teams = () => {
             <div key={m}>Co-manager: {manager?.nickname}</div>
           )
         )}
-        <div>Logo:</div>
-        <img src={logo?.url} alt='team logo' />
       </li>
     ))
   );
