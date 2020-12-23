@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css';
 import PlayerCard from '../components/PlayerCard/PlayerCard';
 import Team from '../components/Team/Team';
 import className from 'classnames';
+import {Button} from '../components/Button/Button';
 
 export default function Home() {
   return (
@@ -11,8 +12,10 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
       <main className={styles.main}>
+      {/*this is a comment */}
+      <Button title='Another Button Title'>
+      </Button>
         <h1 className={styles.title}>
           Welcome to <a href='https://nextjs.org'>Next.js!</a>
         </h1>
