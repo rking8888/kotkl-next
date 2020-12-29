@@ -15,8 +15,6 @@ To see the app, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -41,7 +39,7 @@ Follow the instructions below to authorize the Yahoo API. Note that there are di
 To use the fantasy integration you will need to visit /yahoo:
 
 1. At the top of the page, you should see a status. If you are already connected, you're good to go!
-2. If you aren't connected, there should be a button for you to connect. If you are on preview/production, the page should reload and you should now see the status change to connected. You can skip to Accessing Yahoo Fantasy API below.
+2. If you aren't connected, there should be a button for you to connect. If you are on preview/production, the page should reload and you should now see the status change to connected. You can skip to "Accessing Yahoo Fantasy API" below.
 
 If you are doing this locally, you will need to do the following:
 
