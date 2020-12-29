@@ -2,9 +2,14 @@
 const YahooFantasy = require('yahoo-fantasy');
 require('dotenv').config();
 
+const deploymentURL =
+  process.env.VERCEL_ENV === 'preview'
+    ? 'kotkl-git-' + process.env.VERCEL_GIT_COMMIT_REF + '.rking8888.vercel.app'
+    : process.env.DEPLOYMENT_URL; /* production or dev */
+
 const redirectUrl =
-  (process.env.VERCEL_URL.includes('https') ? '' : 'https://') +
-  process.env.VERCEL_URL +
+  (deploymentURL.includes('https') ? '' : 'https://') +
+  deploymentURL +
   '/api/auth/callback/';
 console.log(redirectUrl);
 
