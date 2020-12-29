@@ -38,23 +38,25 @@ In order to use the fantasy integration, you will need to visit /api/auth. If pr
 
 You should now be authorized to access the yahoo api. Our app is mapped to all the yahoo api endpoints found here: [Yahoo Fantasy API](https://yfantasysandbox.herokuapp.com/)
 
+### Authorizing Yahoo Fantasy API
+
+To use the fantasy integration you will need to visit /yahoo:
+
+1. At the top of the page, you should see a status. If you are already connected, you're good to go!
+2. If you aren't connected, there should be a button for you to connect. If you are on preview/production, the page should reload and you should now see the status change to connected. You can skip to Accessing Yahoo Fantasy API below.
+
+If you are doing this locally, you will need to do the following:
+
+1. After you press the button to connect, the page will redirect you to https://localhost:3000/api/auth/callback/?code={something}. This page will not load since localhost cannot load over https:
+2. Modify the URL in the previous step by changing the 'https:' --> 'http:'
+3. The app should now bring you back to /yahoo with the connected status showing.
+4. You can now follow the mapping structing found in the "Accessing Yahoo Fantasy API" section below.
+
 ### Accessing Yahoo Fantasy API
 
 The mapping structure is /api/yahoo/{top level}/{bottom level}
 
 For example, if you wanted to access the league transactions found here: [League Transactions](https://yfantasysandbox.herokuapp.com/resource/league/transactions), you would go to /api/yahoo/league/transactions.
-
-In the next iteration, we will build a more UI friendly process with buttons instead of manually navigating.
-
-### Localhost instructions
-
-To use the fantasy integration locally, you will need to take the following steps:
-
-1. Visit localhost:3000/api/auth
-2. The page will redirect you to https://localhost:3000/api/auth/callback/?code={something}. This page will not load since localhost cannot load over https:
-3. Modify the URL in the previous step by changing the 'https:' --> 'http:'
-4. The app should now bring you back to the home page.
-5. You can now follow the mapping structing found in the "Accessing Yahoo Fantasy API" section above
 
 ## Problems to Solve
 
