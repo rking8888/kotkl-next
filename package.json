@@ -27,7 +27,7 @@
     "graphql-import-node": "0.0.4",
     "graphql-tools": "^7.0.2",
     "mongodb": "^3.6.3",
-    "next": "10.0.3",
+    "next": "^10.0.3",
     "node-fetch": "^2.6.1",
     "postcss": "^8.2.1",
     "react": "17.0.1",
