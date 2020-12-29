@@ -5,6 +5,7 @@ import {
   InMemoryCache
 } from '@apollo/client';
 import fetch from 'node-fetch'; // Use node-fetch here to allow SSR
+import { CookiesProvider } from 'react-cookie';
 
 const client = new ApolloClient({
   link: new HttpLink({ uri: '/api/graphql', fetch: fetch }),
@@ -15,7 +16,9 @@ const client = new ApolloClient({
 export default function App({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
-      <Component {...pageProps} />
+      <CookiesProvider>
+        <Component {...pageProps} />
+      </CookiesProvider>
     </ApolloProvider>
   );
 }
