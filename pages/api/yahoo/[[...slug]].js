@@ -1,4 +1,5 @@
 import { yf } from '../../../util/yahoo-fantasy';
+import { parseCookies } from '../../../helpers/index';
 
 export default async (req, res) => {
   const {
@@ -6,14 +7,10 @@ export default async (req, res) => {
     body
   } = req;
 
-  let accessToken;
-  const accessTokenCookie = req.headers?.cookie
-    .split('; ')
-    .find((c) => c.startsWith('accessToken'));
+  const cookie = parseCookies(req);
 
-  if (accessTokenCookie) {
-    // console.log(accessTokenCookie);
-    yf.setUserToken(accessTokenCookie.split('=')[1]);
+  if (cookie) {
+    yf.setUserToken(cookie.accessToken);
   }
 
   if (slug.length < 2) {

@@ -22,6 +22,6 @@ export default (req, res) => {
     //   access_token: access_token,
     //   refresh_token: refresh_token
     // });
-    return res.redirect('/');
+    return res.redirect('/yahoo');
   });
 };
