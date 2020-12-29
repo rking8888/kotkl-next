@@ -32,11 +32,9 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Yahoo Fantasy Integration (Phase 1) Live!
+## Yahoo Fantasy Integration (Phase 2) Live!
 
-In order to use the fantasy integration, you will need to visit /api/auth. If prompted, allow the app to access Yahoo sports. The app should then bring you back to the home page.
-
-You should now be authorized to access the yahoo api. Our app is mapped to all the yahoo api endpoints found here: [Yahoo Fantasy API](https://yfantasysandbox.herokuapp.com/)
+Follow the instructions below to authorize the Yahoo API. Note that there are different instructions for doing this locally vs. on preview/production.
 
 ### Authorizing Yahoo Fantasy API
 
@@ -53,6 +51,8 @@ If you are doing this locally, you will need to do the following:
 4. You can now follow the mapping structing found in the "Accessing Yahoo Fantasy API" section below.
 
 ### Accessing Yahoo Fantasy API
+
+You should now be authorized to access the yahoo api. Our app is mapped to all the yahoo api endpoints found here: [Yahoo Fantasy API](https://yfantasysandbox.herokuapp.com/)
 
 The mapping structure is /api/yahoo/{top level}/{bottom level}
 
