@@ -7,9 +7,6 @@ export default (req, res) => {
       return res.status(400).json({ err });
     }
 
-    // console.log("PERSIST ACCESS TOKEN", access_token);
-    // console.log("PERSIST REFRESH TOKEN", refresh_token);
-
     res.setHeader('Set-Cookie', [
       serialize('accessToken', access_token, {
         path: '/',
@@ -22,10 +19,6 @@ export default (req, res) => {
       })
     ]);
 
-    // return res.json({
-    //   access_token: access_token,
-    //   refresh_token: refresh_token
-    // });
     return res.redirect('/yahoo');
   });
 };
