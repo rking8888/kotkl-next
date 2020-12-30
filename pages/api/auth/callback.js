@@ -11,7 +11,11 @@ export default (req, res) => {
     // console.log("PERSIST REFRESH TOKEN", refresh_token);
 
     res.setHeader('Set-Cookie', [
-      serialize('accessToken', access_token, { path: '/', httpOnly: true }),
+      serialize('accessToken', access_token, {
+        path: '/',
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 1),
+        httpOnly: true
+      }),
       serialize('refreshToken', refresh_token, {
         path: '/',
         httpOnly: true
