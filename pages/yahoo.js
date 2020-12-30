@@ -20,21 +20,31 @@ import styles from '../styles/Yahoo.module.css';
 import Head from 'next/head';
 
 function Yahoo({ cookie }) {
-  const authorizeButton = (
+  const buttonToAuthorize = (
     <Button color='primary' variant='contained' href='/api/auth'>
       Authorize Yahoo
     </Button>
   );
+
+  const buttonToRefresh = (
+    <Button color='primary' variant='contained' href='/api/auth'>
+      Refresh Yahoo Token
+    </Button>
+  );
+
   return (
-    <div className={styles.main}>
+    <div className={styles.container}>
       <Head>
         <title>Yahoo API Calls</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
       <ConnectedStatus
-        connected={cookie ? cookie.accessToken : false}
-        actionButton={authorizeButton}
+        connected={cookie && cookie.accessToken}
+        primaryActionButton={buttonToAuthorize}
+        secondaryActionButton={buttonToRefresh}
       />
+
       <main className={styles.main}>
         <Typography variant='h4'>Yahoo API Calls</Typography>
         <List>

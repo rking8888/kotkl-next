@@ -1,13 +1,19 @@
 import { Grid } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ClearIcon from '@material-ui/icons/Clear';
 
 export interface ConnectedStatusProps {
   connected?: boolean;
-  actionButton?: React.ReactElement;
+  primaryActionButton?: React.ReactElement;
+  secondaryActionButton?: React.ReactElement;
 }
 
-const ConnectedStatus = ({ connected, actionButton }: ConnectedStatusProps) => {
+const ConnectedStatus = ({
+  connected,
+  primaryActionButton,
+  secondaryActionButton
+}: ConnectedStatusProps) => {
   return (
     <>
       <Grid
@@ -19,13 +25,22 @@ const ConnectedStatus = ({ connected, actionButton }: ConnectedStatusProps) => {
       >
         <Grid item>
           {connected ? (
-            <CheckCircleIcon style={{ fill: 'green' }} />
+            <Alert severity='success'>
+              You are now authorized and connected to Yahoo API!
+            </Alert>
           ) : (
-            <ClearIcon style={{ fill: 'red' }} />
+            <Alert severity='warning'>
+              You are not authorized or your token has expired. Please
+              authorize.
+            </Alert>
           )}
         </Grid>
-        <Grid item>{connected ? 'Connected!' : 'Not Connected'}</Grid>
-        <Grid item>{!connected && actionButton ? actionButton : null}</Grid>
+        <Grid item>
+          {!connected && primaryActionButton ? primaryActionButton : null}
+        </Grid>
+        <Grid item>
+          {connected && secondaryActionButton ? secondaryActionButton : null}
+        </Grid>
       </Grid>
     </>
   );
