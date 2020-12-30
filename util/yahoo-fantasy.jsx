@@ -4,7 +4,9 @@ require('dotenv').config();
 
 const deploymentURL =
   process.env.VERCEL_ENV === 'preview'
-    ? 'kotkl-git-' + process.env.VERCEL_GIT_COMMIT_REF + '.rking8888.vercel.app'
+    ? 'kotkl-git-' +
+      process.env.VERCEL_GIT_COMMIT_REF.replaceAll('/', '-') +
+      '.rking8888.vercel.app'
     : process.env.DEPLOYMENT_URL; /* production or dev */
 
 const redirectUrl =
