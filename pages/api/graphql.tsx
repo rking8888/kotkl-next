@@ -6,13 +6,13 @@ import { DIRECTIVES } from '@graphql-codegen/typescript-mongodb';
 
 const apolloServer = new ApolloServer({
   typeDefs: [DIRECTIVES, typeDefs],
-  resolvers: resolvers as any
+  resolvers: resolvers as any,
 });
 
 export const config = {
   api: {
-    bodyParser: false
-  }
+    bodyParser: false,
+  },
 };
 
 async function start(req: any, res: any) {

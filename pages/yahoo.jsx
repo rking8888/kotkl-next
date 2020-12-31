@@ -8,7 +8,7 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   IconButton,
-  Avatar
+  Avatar,
 } from '@material-ui/core';
 import SyncIcon from '@material-ui/icons/Sync';
 import PeopleIcon from '@material-ui/icons/People';

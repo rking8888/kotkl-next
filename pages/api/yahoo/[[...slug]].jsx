@@ -4,7 +4,7 @@ import { parseCookies } from '../../../helpers/index';
 export default async (req, res) => {
   const {
     query: { slug },
-    body
+    body,
   } = req;
 
   const cookie = parseCookies(req);
