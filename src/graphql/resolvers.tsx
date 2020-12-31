@@ -20,7 +20,7 @@ const fromDbObject = (dbObject: TeamMvcDbObject): TeamMvc => ({
   number_of_moves: dbObject.number_of_moves,
   number_of_trades: dbObject.number_of_trades,
   managers: dbObject.managers,
-  team_logos: dbObject.team_logos
+  team_logos: dbObject.team_logos,
 });
 const resolvers: Resolvers = {
   Query: {
@@ -31,11 +31,11 @@ const resolvers: Resolvers = {
     Team: async (_: any, { team_id }) => {
       const collection = await getCollection();
       const dbObject = await collection.findOne({
-        _id: ObjectID.createFromHexString(team_id)
+        _id: ObjectID.createFromHexString(team_id),
       });
       return fromDbObject(dbObject!);
-    }
-  }
+    },
+  },
   //   Mutation: {
   //     createTodo: async (_: any, { description }) => {
   //       const data: Omit<TeamMvcDbObject, "_id"> = {
