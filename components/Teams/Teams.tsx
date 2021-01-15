@@ -1,6 +1,8 @@
 import { gql } from '@apollo/client';
 import { useTeamQuery } from '../../src/graphql/types';
 import { useIndexQuery } from '../../src/graphql/types';
+import TeamCard from '../TeamCard/TeamCard';
+import { Grid } from '@material-ui/core';
 
 interface Props {
   team_id: string;
@@ -31,28 +33,19 @@ gql`
 `;
 const Teams = () => {
   const { data, loading } = useIndexQuery();
-  const teamList = data?.allTeams.map((team, i) =>
-    team.team_logos.map((logo, l) => (
-      <li key={i}>
-        <div>Team Name: {team.name}</div>
-        <img src={logo?.url} alt='team logo' />
-        {team.managers.map((manager, m) =>
-          manager?.is_comanager == null ? (
-            <div key={m}>Manager: {manager?.nickname} </div>
-          ) : (
-            <div key={m}>Co-manager: {manager?.nickname}</div>
-          )
-        )}
-      </li>
-    ))
-  );
+  const teamList = data?.allTeams.map((team, i) => (
+    <>
+      <Grid item>
+        <TeamCard team={team} />
+      </Grid>
+    </>
+  ));
   let content = <div>Loading ...</div>;
   if (!loading && data) {
     content = (
-      <>
-        <h2>KOTKL TEAMS:</h2>
-        <ul>{teamList}</ul>
-      </>
+      <Grid container xs={5} direction='column' spacing={6}>
+        {teamList}
+      </Grid>
     );
   }
   return content;

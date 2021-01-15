@@ -6,12 +6,19 @@ type Query {
 type Manager @entity {
   manager_id: String! @column
   nickname: String! @column
-  email: String! @column
+  email: String @column
   is_comanager: String @column
 }
 
 type TeamLogos @entity {
   url: String! @column
+}
+
+type TeamSimple @entity {
+  team_id: String! @column
+  name: String! @column
+  managers: [Manager]! @column
+  team_logos: [TeamLogos]! @column
 }
 
 type TeamMVC @entity {

@@ -35,12 +35,19 @@ export type QueryTeamArgs = {
 export type Manager = {
   manager_id: Scalars['String'];
   nickname: Scalars['String'];
-  email: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
   is_comanager?: Maybe<Scalars['String']>;
 };
 
 export type TeamLogos = {
   url: Scalars['String'];
+};
+
+export type TeamSimple = {
+  team_id: Scalars['String'];
+  name: Scalars['String'];
+  managers: Array<Maybe<Manager>>;
+  team_logos: Array<Maybe<TeamLogos>>;
 };
 
 export type TeamMvc = {
@@ -176,6 +183,7 @@ export type ResolversTypes = {
   String: ResolverTypeWrapper<Scalars['String']>;
   Manager: ResolverTypeWrapper<Manager>;
   TeamLogos: ResolverTypeWrapper<TeamLogos>;
+  TeamSimple: ResolverTypeWrapper<TeamSimple>;
   TeamMVC: ResolverTypeWrapper<TeamMvc>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
@@ -187,6 +195,7 @@ export type ResolversParentTypes = {
   String: Scalars['String'];
   Manager: Manager;
   TeamLogos: TeamLogos;
+  TeamSimple: TeamSimple;
   TeamMVC: TeamMvc;
   Int: Scalars['Int'];
   Boolean: Scalars['Boolean'];
@@ -215,7 +224,7 @@ export type ManagerResolvers<
 > = {
   manager_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   nickname?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   is_comanager?: Resolver<
     Maybe<ResolversTypes['String']>,
     ParentType,
@@ -229,6 +238,25 @@ export type TeamLogosResolvers<
   ParentType extends ResolversParentTypes['TeamLogos'] = ResolversParentTypes['TeamLogos']
 > = {
   url?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TeamSimpleResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['TeamSimple'] = ResolversParentTypes['TeamSimple']
+> = {
+  team_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  managers?: Resolver<
+    Array<Maybe<ResolversTypes['Manager']>>,
+    ParentType,
+    ContextType
+  >;
+  team_logos?: Resolver<
+    Array<Maybe<ResolversTypes['TeamLogos']>>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -269,6 +297,7 @@ export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   Manager?: ManagerResolvers<ContextType>;
   TeamLogos?: TeamLogosResolvers<ContextType>;
+  TeamSimple?: TeamSimpleResolvers<ContextType>;
   TeamMVC?: TeamMvcResolvers<ContextType>;
 };
 

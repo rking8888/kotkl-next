@@ -27,12 +27,19 @@ export type QueryTeamArgs = {
 export type Manager = {
   manager_id: Scalars['String'];
   nickname: Scalars['String'];
-  email: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
   is_comanager?: Maybe<Scalars['String']>;
 };
 
 export type TeamLogos = {
   url: Scalars['String'];
+};
+
+export type TeamSimple = {
+  team_id: Scalars['String'];
+  name: Scalars['String'];
+  managers: Array<Maybe<Manager>>;
+  team_logos: Array<Maybe<TeamLogos>>;
 };
 
 export type TeamMvc = {
@@ -57,12 +64,19 @@ import { ObjectID } from 'mongodb';
 export type ManagerDbObject = {
   manager_id: string;
   nickname: string;
-  email: string;
+  email?: Maybe<string>;
   is_comanager?: Maybe<string>;
 };
 
 export type TeamLogosDbObject = {
   url: string;
+};
+
+export type TeamSimpleDbObject = {
+  team_id: string;
+  name: string;
+  managers: Array<Maybe<Manager>>;
+  team_logos: Array<Maybe<TeamLogos>>;
 };
 
 export type TeamMvcDbObject = {
