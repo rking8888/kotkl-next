@@ -26,6 +26,8 @@ export default function Team({
     </Button>
   );
 
+  console.log(teamData);
+
   function checkEligibility(player) {
     const playerId = player.player_id.toString();
     // const relevantTransactions2 = transactions.transactions.map((element) => {
@@ -78,7 +80,9 @@ export default function Team({
           primaryActionButton={buttonToAuthorize}
           secondaryActionButton={buttonToRefresh}
         />
-        <Typography variant='h4'>Players</Typography>
+        <Typography variant='h4'>
+          {teamData.name ? `${teamData.name} Players` : 'Players'}
+        </Typography>
         {error === '' ? (
           <>
             <List>
@@ -129,7 +133,7 @@ export async function getServerSideProps(context) {
       'nba.l.' + process.env.YAHOO_LEAGUE_ID
     );
   } catch (e) {
-    error = e.toString();
+    error = e.description;
   }
 
   // if(teamData.description.match(/You must be logged in to view this league/i)) {
