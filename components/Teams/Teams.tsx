@@ -34,11 +34,9 @@ gql`
 const Teams = () => {
   const { data, loading } = useIndexQuery();
   const teamList = data?.allTeams.map((team, i) => (
-    <>
-      <Grid item>
-        <TeamCard team={team} />
-      </Grid>
-    </>
+    <Grid item key={team.team_id}>
+      <TeamCard team={team} />
+    </Grid>
   ));
   let content = <div>Loading ...</div>;
   if (!loading && data) {
