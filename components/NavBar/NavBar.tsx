@@ -29,11 +29,6 @@ const NavBar = () => {
                 <Button color='inherit'>Home</Button>
               </Link>
             </Grid>
-            <Grid item>
-              <Link href='/yahoo' passHref>
-                <Button color='inherit'>Yahoo API</Button>
-              </Link>
-            </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
