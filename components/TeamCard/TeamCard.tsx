@@ -11,6 +11,7 @@ import {
   IconButton,
 } from '@material-ui/core';
 import styles from './TeamCard.module.css';
+import Link from 'next/link';
 import { TeamSimple } from '../../src/graphql/types';
 
 export interface TeamCardProps {
@@ -40,9 +41,11 @@ const TeamCard = ({ team }: TeamCardProps) => {
             )}
           </Typography>
           <div className={styles.controls}>
-            <Button size='medium' variant='outlined' color='primary'>
-              <Typography>VIEW TEAM</Typography>
-            </Button>
+            <Link href={`/team/${team.team_id}`}>
+              <Button size='medium' variant='outlined' color='primary'>
+                <Typography>VIEW TEAM</Typography>
+              </Button>
+            </Link>
           </div>
         </CardContent>
       </div>

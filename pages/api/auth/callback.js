@@ -11,14 +11,14 @@ export default (req, res) => {
       serialize('accessToken', access_token, {
         path: '/',
         expires: new Date(Date.now() + 1000 * 60 * 60 * 1),
-        httpOnly: true
+        httpOnly: true,
       }),
       serialize('refreshToken', refresh_token, {
         path: '/',
-        httpOnly: true
-      })
+        httpOnly: true,
+      }),
     ]);
 
-    return res.redirect('/yahoo');
+    return res.redirect('/');
   });
 };

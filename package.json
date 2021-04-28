@@ -33,9 +33,11 @@
     "next": "^10.0.3",
     "node-fetch": "^2.6.1",
     "postcss": "^8.2.1",
+    "query-string": "^7.0.0",
     "react": "17.0.1",
     "react-cookie": "^4.0.3",
     "react-dom": "17.0.1",
+    "react-query": "^3.13.12",
     "tailwindcss": "^2.0.2",
     "yahoo-fantasy": "^4.1.1"
   },
