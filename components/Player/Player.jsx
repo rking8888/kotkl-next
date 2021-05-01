@@ -6,10 +6,15 @@ import {
   ListItemAvatar,
   Avatar,
 } from '@material-ui/core';
+import styles from './Player.module.css';
 
 const Player = ({ player, keeperEligible }) => {
   return (
-    <ListItem>
+    <ListItem
+      className={
+        keeperEligible.keeperEligible ? styles.borderGreen : styles.borderRed
+      }
+    >
       <ListItemAvatar>
         <Avatar>
           <img alt='headshot' src={player.headshot.url} />

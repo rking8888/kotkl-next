@@ -6,6 +6,7 @@ import styles from '../../styles/Team.module.css';
 import Head from 'next/head';
 import ConnectedStatus from '../../components/ConnectedStatus/ConnectedStatus';
 import { Alert } from '@material-ui/lab';
+import { keeperYears } from '../../constants/keeper-years';
 
 export default function Team({
   teamData,
@@ -30,6 +31,7 @@ export default function Team({
 
   function checkEligibility(player) {
     const playerId = player.player_id.toString();
+    const playerName = player.name.full;
     // const relevantTransactions2 = transactions.transactions.map((element) => {
     //     return {subElements: element.players.filter((subElement) => subElement.player_id === player.toString())}
     //   })
@@ -41,11 +43,25 @@ export default function Team({
       (d) => d.player_key === `402.p.${playerId.toString()}`
     );
     //const cost = (wasDrafted && wasDrafted[0]);
-    //console.log(wasDrafted[0]?.cost);
+    // console.log(wasDrafted[0]);
     if (!wasDrafted) {
       return { keeperEligible: false, reason: `was not drafted` };
     } else {
-      reason = `was drafted for $${wasDrafted[0]?.cost}`;
+      const wasPreviouslyKept = keeperYears.findIndex(
+        (element) => element.player === playerName
+      );
+      if (wasPreviouslyKept != -1) {
+        if (Number(keeperYears[wasPreviouslyKept].yearsKept) >= 3) {
+          return {
+            keeperEligible: false,
+            reason: `was drafted for $${wasDrafted[0]?.cost} but kept by ${keeperYears[wasPreviouslyKept].owner} for ${keeperYears[wasPreviouslyKept].yearsKept} years already.`,
+          };
+        } else {
+          reason = `was drafted for $${wasDrafted[0]?.cost} and kept by ${keeperYears[wasPreviouslyKept].owner} for ${keeperYears[wasPreviouslyKept].yearsKept} year(s)`;
+        }
+      } else {
+        reason = `was drafted for $${wasDrafted[0]?.cost}`;
+      }
     }
 
     // check transactions
